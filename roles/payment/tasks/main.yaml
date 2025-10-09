@@ -7,8 +7,7 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: python-setup.yaml
-
-    
+   
 - name: Copy service and restart
   ansible.builtin.import_role:
     name: common
