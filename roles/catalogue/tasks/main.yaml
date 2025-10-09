@@ -27,7 +27,7 @@
   ansible.builtin.shell: mongosh --host "{{ mongodb_host }}" </app/db/master-data.js
   when : catalogue_output.stdout | int < 0
 
-- name: Copy service and retart
+- name: Copy service and restart
   ansible.builtin.import_role:
     name: common
     tasks_from: system-setup.yaml
