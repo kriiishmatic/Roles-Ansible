@@ -1,0 +1,32 @@
+- name: Importing app-setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: Importing maven and installing dependencies
+  ansible.builtin.import_role:
+    name: commmon
+    tasks_from: maven-setup.yaml
+
+- name: move jar file
+  ansible.builtin.command: mv target/shipping-{{ version }}.jar shipping.jar
+  args:
+    chdir: /app
+
+- name: import shipping data into mysql
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    login_host: "{{ mysql_host }}"
+    login_user: "{{ root-user }}"
+    login_password: "{{ mysql-password }}"
+    target: "{{ item }}"
+  loop:
+  - /app/db/schema.sql
+  - /app/db/app-user.sql 
+  - /app/db/master-data.sql
+    
+- name: Copy service and restart
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: system-setup.yaml
