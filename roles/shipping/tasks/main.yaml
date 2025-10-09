@@ -13,18 +13,19 @@
   args:
     chdir: /app
 
-- name: import shipping data into mysql
+- name: Import shipping data into MySQL
   community.mysql.mysql_db:
     state: import
     name: all
     login_host: "{{ mysql_host }}"
-    login_user: "{{ mysql-root-user }}"
-    login_password: "{{ mysql-password }}"
+    login_user: "{{ mysql_root_user }}"
+    login_password: "{{ mysql_password }}"
     target: "{{ item }}"
   loop:
-  - /app/db/schema.sql
-  - /app/db/app-user.sql 
-  - /app/db/master-data.sql
+    - /app/db/schema.sql
+    - /app/db/app-user.sql
+    - /app/db/master-data.sql
+
     
 - name: Copy service and restart
   ansible.builtin.import_role:
