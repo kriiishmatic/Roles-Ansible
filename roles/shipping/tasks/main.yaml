@@ -8,10 +8,13 @@
     name: common
     tasks_from: maven-setup.yaml
 
-- name: move jar file
-  ansible.builtin.command: mv target/shipping-{{ version }}.jar shipping.jar
-  args:
-    chdir: /app
+- name: install mysql python libraries
+  ansible.builtin.pip:
+    executable: pip3.9
+    name: "{{ item }}"
+  loop:
+  - cryptography
+  - PyMySQL
 
 - name: Import shipping data into MySQL
   community.mysql.mysql_db:
