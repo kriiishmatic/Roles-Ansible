@@ -18,7 +18,7 @@
     state: import
     name: all
     login_host: "{{ mysql_host }}"
-    login_user: "{{ root-user }}"
+    login_user: "{{ mysql-root-user }}"
     login_password: "{{ mysql-password }}"
     target: "{{ item }}"
   loop:
