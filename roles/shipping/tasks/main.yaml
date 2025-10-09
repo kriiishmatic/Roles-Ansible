@@ -5,7 +5,7 @@
 
 - name: Importing maven and installing dependencies
   ansible.builtin.import_role:
-    name: commmon
+    name: common
     tasks_from: maven-setup.yaml
 
 - name: move jar file
