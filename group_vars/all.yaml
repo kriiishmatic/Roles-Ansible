@@ -7,4 +7,5 @@ cart_host: "cart.kriiishmatic.fun"
 user_host: "user.kriiishmatic.fun"
 shipping_host: "shipping.kriiishmatic.fun"
 payment_host: "payment.kriiishmatic.fun"
+frontend_host: "frontend.kriiishmatic.fun"
 
