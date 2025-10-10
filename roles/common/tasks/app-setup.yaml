@@ -16,7 +16,6 @@
     state: directory
     path: /app
     
-
 - name: Delete previous code if at all it exits
   ansible.builtin.file:
     path: /tmp/{{ component }}.zip
