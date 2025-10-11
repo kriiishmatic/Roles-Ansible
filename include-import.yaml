@@ -2,4 +2,4 @@
   hosts: localhost
   connection: local
   roles:
-    - include-import
+  - include-import
