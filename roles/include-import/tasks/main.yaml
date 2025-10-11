@@ -9,4 +9,4 @@
     name: common 
     tasks_from: IvsI.yaml
   tags:
-  - Prod
+  - prod
