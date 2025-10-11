@@ -1,7 +1,7 @@
 - name: Include yaml
-  ansible.buitlin.debug:
+  ansible.builtin.debug:
     msg: "Include says HI"
 
 - name: Import yaml
-  ansible.buitlin.debug:
+  ansible.builtin.debug:
     msg: " Import says Howdy "
