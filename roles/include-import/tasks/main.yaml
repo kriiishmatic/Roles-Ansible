@@ -1,0 +1,5 @@
+- name: Testing include vs Import
+  ansible.buitlin.include_role:
+  #ansible.builtin.import_role:
+    name : common 
+    tasks_from: includevsimport.yaml
