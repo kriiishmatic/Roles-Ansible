@@ -7,7 +7,7 @@
   vars:
     # --- customize these ---
     subscription_id: ""            # optional: set or export AZURE_SUBSCRIPTION_ID
-    resource_group: my-3tier-rg
+    resource_group: RoboshopNW
     location: Central India
     admin_username: krishna_azure
     ssh_pub_key_path: "~/.86skey.pub" # make sure this file exists on control machine
@@ -29,11 +29,6 @@
     - name: "Ensure required python libs are present (informational)"
       ansible.builtin.debug:
         msg: "Ensure azure.azcollection is installed and python deps (msrestazure/azure) are installed on control host."
-
-    - name: Create resource group
-      azure.azcollection.azure_rm_resourcegroup:
-        name: "{{ resource_group }}"
-        location: "{{ location }}"
 
     - name: Create a Network Security Group with common rules (SSH, HTTP)
       azure.azcollection.azure_rm_securitygroup:
@@ -58,10 +53,6 @@
             priority: 1001
             source_address_prefix: '*'
             destination_address_prefix: '*'
-
-    - name: "Create public IP for frontend (if frontend exists) - created per-host in loop below"
-      ansible.builtin.debug:
-        msg: "Public IPs will be created for instances named 'frontend' only."
 
     - name: Create NICs, Public IP (for frontend) and VMs
       vars:

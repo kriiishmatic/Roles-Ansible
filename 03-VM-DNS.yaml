@@ -1,0 +1,24 @@
+- name: Creating VMs and updating DNS
+  hosts: localhost
+  connection: local
+  become: 
+  vars:
+  username: azureuser
+  instances:
+  - mysql
+  tasks:
+    - name: Creating VMs
+      azure_rm_virtualmachine:
+        resource_group: myResourceGroup
+        name: "{{ item }}"
+        vm_size: Standard_D4
+        admin_username: "{{ username }}"
+        ssh_public_keys:
+          - path: /home/adminUser/.ssh/authorized_keys
+            key_data: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICr0TfoiDY5OKQdhKuqYotdtWyhCnHz7cbm50Txnrm8H kriii@Saitama
+        image:
+          offer: ubuntu-24_04-lts
+          publisher: canonical
+          sku: '24.04'
+          version: latest
+        loop: "{{ instances }}"
